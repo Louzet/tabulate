@@ -1,0 +1,42 @@
+{
+    "name": "louzet/tabulate",
+    "description": "",
+    "keywords": [
+        "louzet",
+        "tabulate"
+    ],
+    "homepage": "https://github.com/louzet/tabulate",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Mickael Louzet",
+            "email": "micklouzet@hotmail.fr",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Tabulate\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tabulate\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
