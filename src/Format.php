@@ -12,6 +12,9 @@ namespace Tabulate;
 
 class Format
 {
+    public $width;
+    public $height;
+
     public $marginLeft = 1;
     public $marginRight = 1;
     public $marginTop = 1;
@@ -24,13 +27,13 @@ class Format
 
     public $borderLeft = '|';
     public $borderRight = '|';
-    public $borderTop = '_';
-    public $borderBottom = '_';
+    public $borderTop = '-';
+    public $borderBottom = '-';
 
-    public $cornerLeft = '+';
-    public $cornerRight = '+';
-    public $cornerTop = '+';
-    public $cornerBottom = '+';
+    public $cornerTopLeft = '+';
+    public $cornerTopRight = '+';
+    public $cornerBottomLeft = '+';
+    public $cornerBottomRight = '+';
 
     public $columnSeparator = '|';
 }

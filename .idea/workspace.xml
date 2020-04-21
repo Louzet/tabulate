@@ -11,11 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abbf20bb-5fbc-42a5-8c2f-6070f2bc6676" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tabulate.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Cell.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Format.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Format.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Row.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Row.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.php" afterDir="false" />
     </list>
     <list id="a5972df5-085c-47fb-b176-ed889ebcbf4b" name="Revert &quot;initial commit&quot;" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +103,7 @@
       <updated>1587422425662</updated>
       <workItem from="1587422428245" duration="17000" />
       <workItem from="1587422448683" duration="1950000" />
-      <workItem from="1587424426153" duration="3461000" />
+      <workItem from="1587424426153" duration="13523000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;initial commit&quot;&#10;&#10;This reverts commit dde3d7ec">
       <created>1587422721418</created>
@@ -135,10 +135,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;initial commit&quot;&#10;&#10;This reverts commit dde3d7ec" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1587425482623">
+    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1587430896116">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587425482623" />
+    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587430896116" />
     <state x="777" y="236" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587424497075">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -147,14 +147,14 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="477" y="3" key="CommitChangelistDialog2/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587422720516" />
-    <state x="644" y="248" key="NewPhpClassDialog" timestamp="1587427706536">
+    <state x="644" y="248" key="NewPhpClassDialog" timestamp="1587433269242">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="644" y="248" key="NewPhpClassDialog/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587427706536" />
-    <state x="764" y="459" key="NewPhpFileDialog" timestamp="1587426933346">
+    <state x="644" y="248" key="NewPhpClassDialog/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587433269242" />
+    <state x="764" y="459" key="NewPhpFileDialog" timestamp="1587432175547">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="764" y="459" key="NewPhpFileDialog/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587426933346" />
+    <state x="764" y="459" key="NewPhpFileDialog/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587432175547" />
     <state x="491" y="185" width="1234" height="710" key="SettingsEditor" timestamp="1587424398532">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

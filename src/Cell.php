@@ -17,6 +17,9 @@ class Cell
      */
     private $data;
 
+    /** @var Format */
+    private $format;
+
     /**
      * Cell constructor.
      * @param string $data
@@ -24,6 +27,7 @@ class Cell
     public function __construct(string $data)
     {
         $this->data = $data;
+        $this->format = new Format();
     }
 
     /**
@@ -40,5 +44,18 @@ class Cell
     public function size(): int
     {
         return \strlen($this->data);
+    }
+
+    /**
+     * @return Format
+     */
+    public function format(): Format
+    {
+        return $this->format;
+    }
+
+    public function hasValue(): bool
+    {
+        return null !== $this->data;
     }
 }

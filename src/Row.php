@@ -17,6 +17,14 @@ class Row implements \Countable
      */
     private $cells = [];
 
+    /** @var Format */
+    private $format;
+
+    public function __construct()
+    {
+        $this->format = new Format();
+    }
+
     /**
      * @param Cell $cell
      */
@@ -26,20 +34,45 @@ class Row implements \Countable
     }
 
     /**
-     * @param int $index
-     * @return Cell
+     * @return Cell[]
      */
-    public function cell(int $index): Cell
+    public function getCells(): array
     {
-        return $this->cells[$index];
+        return $this->cells;
+    }
+
+    /**
+     * @param int $index
+     * @return Cell|null
+     */
+    public function cell(int $index): ?Cell
+    {
+        if ($index < \count($this->cells)) {
+            return $this->cells[$index];
+        }
+        return null;
     }
 
     /**
      * @return int
      */
-    public function size(): int
+    public function height(): int
     {
-        return \count($this->cells);
+        $result = 1;
+        foreach ($this->cells as $cell) {
+            $cellData = $cell->data();
+            $formatWidth = $cell->format()->width;
+
+            if (null !== $formatWidth && \strlen($cellData) > $formatWidth) {
+                $dataWidth = (int) ceil(\strlen($cellData) / $formatWidth);
+                /** @var int $result */
+                $result = max($result, $dataWidth);
+            } else {
+                $result = max($result, 1);
+            }
+        }
+
+        return (int) $result;
     }
 
     /**
