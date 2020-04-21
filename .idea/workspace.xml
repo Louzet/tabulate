@@ -11,10 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="abbf20bb-5fbc-42a5-8c2f-6070f2bc6676" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Cell.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Cell.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Format.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Format.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Row.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Row.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Table.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Table.php" afterDir="false" />
     </list>
     <list id="a5972df5-085c-47fb-b176-ed889ebcbf4b" name="Revert &quot;initial commit&quot;" comment="" />
@@ -75,6 +72,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="com.jetbrains.php.lang.actions.generation.PhpGenerateFieldAccessorHandlerBase$MyMemberChooser.fluent.setters.last.selected" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -103,7 +101,7 @@
       <updated>1587422425662</updated>
       <workItem from="1587422428245" duration="17000" />
       <workItem from="1587422448683" duration="1950000" />
-      <workItem from="1587424426153" duration="13523000" />
+      <workItem from="1587424426153" duration="14521000" />
     </task>
     <task id="LOCAL-00001" summary="Revert &quot;initial commit&quot;&#10;&#10;This reverts commit dde3d7ec">
       <created>1587422721418</created>
@@ -135,10 +133,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;initial commit&quot;&#10;&#10;This reverts commit dde3d7ec" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1587430896116">
+    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser" timestamp="1587460611390">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587430896116" />
+    <state x="751" y="220" key="#com.intellij.ide.util.MemberChooser/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587460611390" />
     <state x="777" y="236" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1587424497075">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -167,5 +165,9 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="808" y="449" key="VCS.ChangelistChooser/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587422740436" />
+    <state x="616" y="192" width="672" height="676" key="search.everywhere.popup" timestamp="1587460856992">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="616" y="192" width="672" height="676" key="search.everywhere.popup/-1920.-60.1920.1080/0.0.1920.1080@0.0.1920.1080" timestamp="1587460856992" />
   </component>
 </project>

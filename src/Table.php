@@ -86,7 +86,7 @@ class Table implements TableInterface
             // footer
             if ($i + 1 === \count($this->rows)) {
                 for ($q = 0; $q < $countCells; $q++) {
-                    $this->printCellHeader($stream, $i, $q);
+                    $this->printCellFooter($stream, $i, $q);
                 }
             }
         }
@@ -194,7 +194,7 @@ class Table implements TableInterface
         $width += $this->format->paddingRight;
 
         if ($colIndex === 0) {
-            echo $this->format->cornerTopLeft;
+            echo $this->format->corner;
         }
 
         $i = 0;
@@ -202,7 +202,7 @@ class Table implements TableInterface
             echo $this->format->borderTop;
             $i++;
         }
-        echo $this->format->cornerTopRight;
+        echo $this->format->corner;
     }
 
     /**
@@ -237,5 +237,32 @@ class Table implements TableInterface
         }
         echo $this->format->borderRight;
         echo PHP_EOL;
+    }
+
+    private function printCellFooter(&$stream, int $rowIndex, int $colIndex): void
+    {
+        $width = $this->columnWidth($colIndex);
+        $height = $this->rowHeight($rowIndex);
+        $cell = $this->rows[$rowIndex]->cell($colIndex);
+
+        $cellContent = '';
+
+        if (null !== $cell && $cell->hasValue()) {
+            $cellContent = $cell->data();
+        }
+
+        $width += $this->format->paddingLeft;
+        $width += $this->format->paddingRight;
+
+        if ($colIndex === 0) {
+            echo $this->format->corner;
+        }
+
+        $i = 0;
+        while ($i < $width) {
+            echo $this->format->borderTop;
+            $i++;
+        }
+        echo $this->format->corner;
     }
 }
