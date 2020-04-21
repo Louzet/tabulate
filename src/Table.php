@@ -20,14 +20,8 @@ class Table implements TableInterface
     /** @var Format */
     private $format;
 
-    private $in;
-
-    private $out;
-
     public function __construct()
     {
-        $this->in = STDIN;
-        $this->out = STDOUT;
         $this->format = new Format();
     }
 
