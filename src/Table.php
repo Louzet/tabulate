@@ -66,7 +66,7 @@ class Table implements TableInterface
 
                     if ($pos < $size) {
                         $remaining = $size - $pos;
-                        $subRowContent[] = substr($cellContent, $pos, max($remaining, $columnWidth));
+                        $subRowContent[] = substr($cellContent, $pos, min($remaining, $columnWidth));
                     } else {
                         $subRowContent[] = '';
                     }
@@ -232,7 +232,7 @@ class Table implements TableInterface
             }
 
             for ($m = 0; $m < $this->format->paddingRight; $m++) {
-                echo '';
+                echo ' ';
             }
         }
         echo $this->format->borderRight;
