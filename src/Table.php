@@ -10,6 +10,7 @@ declare(strict_types=1);
 
 namespace Tabulate;
 
+use Tabulate\style\FontAlign;
 use Tabulate\style\Format;
 
 class Table implements TableInterface
@@ -54,11 +55,11 @@ class Table implements TableInterface
 
             // row content
             for ($m = 0; $m < $rowHeight; $m++) {
-                for ($n = 0; $n < $countCells; $n++) {
+                foreach ($cells as $n => $nValue) {
                     $columnWidth = $this->columnWidth($n);
-                    $cellContent = $cells[1]->data();
+                    $cellContent = $nValue->data();
                     $pos = $m * $columnWidth;
-                    $size = \strlen($cellContent);
+                    $size = \mb_strlen($cellContent);
 
                     if ($pos < $size) {
                         $remaining = $size - $pos;
@@ -116,7 +117,7 @@ class Table implements TableInterface
                 if (null !== $this->format->width) {
                     $result = $this->format->width;
                 } else {
-                    $result = max($result, $cellWidth) + 4;
+                    $result = max($result, $cellWidth) + 2;
                 }
             }
         }
@@ -144,8 +145,6 @@ class Table implements TableInterface
     {
         for ($colIndex = 0, $colIndexMax = \count( $this->rows[$rowIndex] ); $colIndex < $colIndexMax; $colIndex++) {
             $width = $this->columnWidth($colIndex);
-            $height = $this->rowHeight($rowIndex);
-            $cell = $this->rows[$rowIndex]->cell($colIndex);
 
             // add padding to width
             $width += $this->format->paddingLeft;
@@ -174,14 +173,6 @@ class Table implements TableInterface
     private function printCellHeader(int $rowIndex, int $colIndex): void
     {
         $width = $this->columnWidth($colIndex);
-        $height = $this->rowHeight($rowIndex);
-        $cell = $this->rows[$rowIndex]->cell($colIndex);
-
-        $cellContent = '';
-
-        if (null !== $cell && $cell->hasValue()) {
-            $cellContent = $cell->data();
-        }
 
         $width += $this->format->paddingLeft;
         $width += $this->format->paddingRight;
@@ -218,15 +209,16 @@ class Table implements TableInterface
                 echo ' ';
             }
 
-            echo $cellContent;
-
-            $contentWidth = \strlen($cellContent);
-            $columnWidth = $columnWidths[$i];
-
-            if ($contentWidth < $columnWidth) {
-                for ($k = 0; $k < $columnWidth - $contentWidth; $k++) {
-                    echo ' ';
-                }
+            switch ($this->format->fontAlign) {
+                case FontAlign::LEFT:
+                    $this->printContentLeftAlignement($cellContent, $columnWidths[$i]);
+                    break;
+                case FontAlign::CENTER:
+                    $this->printContentCenterAlignement($cellContent, $columnWidths[$i]);
+                    break;
+                case FontAlign::RIGHT:
+                    $this->printContentRightAlignement($cellContent, $columnWidths[$i]);
+                    break;
             }
 
             for ($m = 0; $m < $this->format->paddingRight; $m++) {
@@ -240,14 +232,6 @@ class Table implements TableInterface
     private function printCellFooter(&$stream, int $rowIndex, int $colIndex): void
     {
         $width = $this->columnWidth($colIndex);
-        $height = $this->rowHeight($rowIndex);
-        $cell = $this->rows[$rowIndex]->cell($colIndex);
-
-        $cellContent = '';
-
-        if (null !== $cell && $cell->hasValue()) {
-            $cellContent = $cell->data();
-        }
 
         $width += $this->format->paddingLeft;
         $width += $this->format->paddingRight;
@@ -262,5 +246,51 @@ class Table implements TableInterface
             $i++;
         }
         echo $this->format->corner;
+    }
+
+    private function printContentLeftAlignement(string $cellContent, int $columnWidth): void
+    {
+        echo $cellContent;
+        $contentWidth = \mb_strlen($cellContent);
+        if ($contentWidth < $columnWidth) {
+            for ($i = 0; $i < $columnWidth - $contentWidth; $i++) {
+                echo ' ';
+            }
+        }
+    }
+
+    private function printContentCenterAlignement(string $cellContent, int $columnWidth): void
+    {
+        $contentWidth = \mb_strlen($cellContent);
+        $numSpaces = $columnWidth - $contentWidth;
+        if ($numSpaces % 2 === 0) {
+            for ($i = 0; $i < $numSpaces / 2; $i++) {
+                echo ' ';
+            }
+            echo $cellContent;
+            for ($j = 0; $j < $numSpaces / 2; $j++) {
+                echo ' ';
+            }
+        } else {
+            $numSpacesBefore = ($numSpaces / 2) + 1;
+            for ($k = 0; $k < $numSpacesBefore; $k++) {
+                echo ' ';
+            }
+            echo $cellContent;
+            for ($l = 0; $l < $numSpacesBefore; $l++) {
+                echo ' ';
+            }
+        }
+    }
+
+    private function printContentRightAlignement(string $cellContent, int $columnWidth): void
+    {
+        $contentWidth = \mb_strlen($cellContent);
+        if ($contentWidth < $columnWidth) {
+            for ($i = 0; $i < $columnWidth - $contentWidth; $i++) {
+                echo ' ';
+            }
+        }
+        echo $cellContent;
     }
 }

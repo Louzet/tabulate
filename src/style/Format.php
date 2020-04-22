@@ -16,6 +16,7 @@ class Format
     public $height;
 
     public $fontStyle = [];
+    public $fontAlign = FontAlign::LEFT;
 
     public $marginLeft = 2;
     public $marginRight = 2;
@@ -63,6 +64,16 @@ class Format
     public function setFontStyle(array $fontStyle): self
     {
         $this->fontStyle = $fontStyle;
+        return $this;
+    }
+
+    /**
+     * @param string $fontAlign
+     * @return $this
+     */
+    public function setFontAlign(string $fontAlign): self
+    {
+        $this->fontAlign = $fontAlign;
         return $this;
     }
 
