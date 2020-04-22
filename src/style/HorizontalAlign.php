@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace Tabulate\Align;
+namespace Tabulate\style;
 
 class HorizontalAlign
 {

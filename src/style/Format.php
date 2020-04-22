@@ -8,17 +8,19 @@
 
 declare(strict_types=1);
 
-namespace Tabulate;
+namespace Tabulate\style;
 
 class Format
 {
     public $width;
     public $height;
 
-    public $marginLeft = 1;
-    public $marginRight = 1;
-    public $marginTop = 1;
-    public $marginBottom = 1;
+    public $fontStyle = [];
+
+    public $marginLeft = 2;
+    public $marginRight = 2;
+    public $marginTop = 2;
+    public $marginBottom = 2;
 
     public $paddingLeft = 1;
     public $paddingRight = 1;
@@ -51,6 +53,16 @@ class Format
     public function setHeight($height): self
     {
         $this->height = $height;
+        return $this;
+    }
+
+    /**
+     * @param FontStyle[] $fontStyle
+     * @return Format
+     */
+    public function setFontStyle(array $fontStyle): self
+    {
+        $this->fontStyle = $fontStyle;
         return $this;
     }
 

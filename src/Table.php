@@ -10,6 +10,8 @@ declare(strict_types=1);
 
 namespace Tabulate;
 
+use Tabulate\style\Format;
+
 class Table implements TableInterface
 {
     /**
@@ -40,13 +42,13 @@ class Table implements TableInterface
 
             // Header
             for ($j = 0, $jMax = \count( $cells ); $j < $jMax; $j++) {
-                $this->printCellHeader($stream, $i, $j);
+                $this->printCellHeader($i, $j);
             }
             echo PHP_EOL;
 
             // paddint top
             for ($k = 0; $k < $this->format->paddingTop; $k++) {
-                $this->printPaddingRow($stream, $k);
+                $this->printPaddingRow($k);
                 echo PHP_EOL;
             }
 
@@ -68,12 +70,12 @@ class Table implements TableInterface
                     $columnWidths[] = $columnWidth;
                 }
 
-                $this->printRowContent($stream, $subRowContent, $columnWidths);
+                $this->printRowContent($subRowContent, $columnWidths);
             }
 
             // padding bottom
             for ($p = 0; $p < $this->format->paddingBottom; $p++) {
-                $this->printPaddingRow($stream, $p);
+                $this->printPaddingRow($p);
                 echo PHP_EOL;
             }
 
@@ -100,11 +102,6 @@ class Table implements TableInterface
         $this->rows[] = $row;
     }
 
-    public function column(int $index)
-    {
-        $column = null;
-    }
-
     /**
      * @param int $index
      * @return int
@@ -119,7 +116,7 @@ class Table implements TableInterface
                 if (null !== $this->format->width) {
                     $result = $this->format->width;
                 } else {
-                    $result = max($result, $cellWidth);
+                    $result = max($result, $cellWidth) + 4;
                 }
             }
         }
@@ -141,10 +138,9 @@ class Table implements TableInterface
     }
 
     /**
-     * @param resource|false $stream
      * @param int $rowIndex
      */
-    private function printPaddingRow(&$stream, int $rowIndex): void
+    private function printPaddingRow(int $rowIndex): void
     {
         for ($colIndex = 0, $colIndexMax = \count( $this->rows[$rowIndex] ); $colIndex < $colIndexMax; $colIndex++) {
             $width = $this->columnWidth($colIndex);
@@ -155,7 +151,11 @@ class Table implements TableInterface
             $width += $this->format->paddingLeft;
             $width += $this->format->paddingRight;
 
-            echo $this->format->borderLeft;
+            if ($colIndex === 0) {
+                echo $this->format->borderLeft;
+            } else {
+                echo $this->format->columnSeparator;
+            }
 
             $i = 0;
 
@@ -168,11 +168,10 @@ class Table implements TableInterface
     }
 
     /**
-     * @param $stream
      * @param int $rowIndex
      * @param int $colIndex
      */
-    private function printCellHeader(&$stream, int $rowIndex, int $colIndex): void
+    private function printCellHeader(int $rowIndex, int $colIndex): void
     {
         $width = $this->columnWidth($colIndex);
         $height = $this->rowHeight($rowIndex);
@@ -200,16 +199,21 @@ class Table implements TableInterface
     }
 
     /**
-     * @param $stream
      * @param string[] $rowContent
      * @param array $columnWidths
      */
-    private function printRowContent(&$stream, array $rowContent, array $columnWidths): void
+    private function printRowContent(array $rowContent, array $columnWidths): void
     {
         $rowContentSize = \count($rowContent);
         for ($i = 0; $i < $rowContentSize; $i++) {
             $cellContent = $rowContent[$i];
-            echo $this->format->borderLeft;
+
+            if ($i === 0) {
+                echo $this->format->borderLeft;
+            } else {
+                echo $this->format->columnSeparator;
+            }
+
             for ($j = 0; $j < $this->format->paddingLeft; $j++) {
                 echo ' ';
             }
