@@ -15,7 +15,7 @@ class Format
     public $width;
     public $height;
 
-    public $fontStyle = [];
+    public $fontColor = FontColor::WHITE;
     public $fontAlign = FontAlign::LEFT;
 
     public $marginLeft = 2;
@@ -58,12 +58,12 @@ class Format
     }
 
     /**
-     * @param FontStyle[] $fontStyle
+     * @param string $fontColor
      * @return Format
      */
-    public function setFontStyle(array $fontStyle): self
+    public function setFontColor(string $fontColor): self
     {
-        $this->fontStyle = $fontStyle;
+        $this->fontColor = $fontColor;
         return $this;
     }
 
