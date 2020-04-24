@@ -2,7 +2,7 @@
 /**
  * Created by PhpStorm.
  * Author: mickael-dev
- * File: FontStyle.php
+ * File: FontColor.php
  * Created: 21/04/2020 11:49
  */
 
@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace Tabulate\style;
 
-class FontStyle
+class FontColor
 {
     public const DARK       = 'dark';
     public const RED        = 'red';
@@ -31,7 +31,7 @@ class FontStyle
 
     private $textColor;
 
-    public function color(string $color): FontStyle
+    public function color(string $color): FontColor
     {
         $this->textColor = $color;
 
