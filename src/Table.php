@@ -71,7 +71,7 @@ class Table implements TableInterface
                     $columnWidths[] = $columnWidth;
                 }
 
-                $this->printRowContent($subRowContent, $columnWidths);
+                $this->printRowContent($subRowContent, $columnWidths, $i);
             }
 
             // padding bottom
@@ -172,44 +172,60 @@ class Table implements TableInterface
      */
     private function printCellHeader(int $rowIndex, int $colIndex): void
     {
+        $row = $this->rows[$rowIndex];
+        $rowFormat = $row->getFormat();
+        $cellFormat = $row->cell($colIndex)->getFormat();
         $width = $this->columnWidth($colIndex);
 
-        $width += $this->format->paddingLeft;
-        $width += $this->format->paddingRight;
+        $format = $this->getFormat($rowFormat, $cellFormat);
+
+        $width += $format->paddingLeft;
+        $width += $format->paddingRight;
 
         if ($colIndex === 0) {
-            echo $this->format->corner;
+            echo $format->corner;
         }
 
         $i = 0;
         while ($i < $width) {
-            echo $this->format->borderTop;
+            echo $format->borderTop;
             $i++;
         }
-        echo $this->format->corner;
+        echo $format->corner;
     }
 
     /**
      * @param string[] $rowContent
      * @param array $columnWidths
+     * @param int $rowIndex
      */
-    private function printRowContent(array $rowContent, array $columnWidths): void
+    private function printRowContent(array $rowContent, array $columnWidths, int $rowIndex): void
     {
+        $row = $this->rows[$rowIndex];
+        $rowFormat = $row->getFormat();
+
         $rowContentSize = \count($rowContent);
+        $format = null;
+
         for ($i = 0; $i < $rowContentSize; $i++) {
+            $cell = $row->cell($i);
+            $cellFormat = $cell->getFormat();
+
+            $format = $this->getFormat($rowFormat, $cellFormat);
+
             $cellContent = $rowContent[$i];
 
             if ($i === 0) {
-                echo $this->format->borderLeft;
+                echo $format->borderLeft;
             } else {
-                echo $this->format->columnSeparator;
+                echo $format->columnSeparator;
             }
 
-            for ($j = 0; $j < $this->format->paddingLeft; $j++) {
+            for ($j = 0; $j < $format->paddingLeft; $j++) {
                 echo ' ';
             }
 
-            switch ($this->format->fontAlign) {
+            switch ($format->fontAlign) {
                 case FontAlign::LEFT:
                     $this->printContentLeftAlignement($cellContent, $columnWidths[$i]);
                     break;
@@ -221,31 +237,36 @@ class Table implements TableInterface
                     break;
             }
 
-            for ($m = 0; $m < $this->format->paddingRight; $m++) {
+            for ($m = 0; $m < $format->paddingRight; $m++) {
                 echo ' ';
             }
         }
-        echo $this->format->borderRight;
+        echo $format->borderRight;
         echo PHP_EOL;
     }
 
     private function printCellFooter(&$stream, int $rowIndex, int $colIndex): void
     {
+        $row = $this->rows[$rowIndex];
+        $rowFormat = $row->getFormat();
+        $cellFormat = $row->cell($colIndex)->getFormat();
         $width = $this->columnWidth($colIndex);
 
-        $width += $this->format->paddingLeft;
-        $width += $this->format->paddingRight;
+        $format = $this->getFormat($rowFormat, $cellFormat);
+
+        $width += $format->paddingLeft;
+        $width += $format->paddingRight;
 
         if ($colIndex === 0) {
-            echo $this->format->corner;
+            echo $format->corner;
         }
 
         $i = 0;
         while ($i < $width) {
-            echo $this->format->borderTop;
+            echo $format->borderTop;
             $i++;
         }
-        echo $this->format->corner;
+        echo $format->corner;
     }
 
     private function printContentLeftAlignement(string $cellContent, int $columnWidth): void
@@ -292,5 +313,24 @@ class Table implements TableInterface
             }
         }
         echo $cellContent;
+    }
+
+    /**
+     * @param Format|null $rowFormat
+     * @param Format|null $cellFormat
+     * @return Format
+     */
+    private function getFormat(Format $rowFormat = null, Format $cellFormat = null): Format
+    {
+
+        if (null !== $rowFormat) {
+            $result = $rowFormat;
+        } elseif (null !== $cellFormat) {
+            $result = $cellFormat;
+        } else {
+            $result = $this->format;
+        }
+
+        return $result;
     }
 }

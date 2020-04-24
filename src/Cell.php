@@ -33,6 +33,14 @@ class Cell
     }
 
     /**
+     * @return Format
+     */
+    public function getFormat(): Format
+    {
+        return $this->format;
+    }
+
+    /**
      * @return string
      */
     public function data(): string

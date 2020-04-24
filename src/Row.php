@@ -28,6 +28,14 @@ class Row implements \Countable
     }
 
     /**
+     * @return Format
+     */
+    public function getFormat(): Format
+    {
+        return $this->format;
+    }
+
+    /**
      * @param Cell $cell
      */
     public function addCell(Cell $cell): void
